@@ -1,4 +1,4 @@
-id,kanal,name,abos ,bereich,konstellation,aktiv,jahr,funk,wohnsitz,veröffentlichungsdatum,upload,austrittsdatum,kritikvideos,reaktion_kritik
+id,name,creator,abos ,bereich,konstellation,aktiv,jahr,funk,wohnsitz,veröffentlichungsdatum,upload,austrittsdatum,kritikvideos,reaktion_kritik
 funk,funk,ARD&ZDF,226,f,2,1,2016,1,Mainz,,0,,,0
 strg,STRG_F,NDR,1180,f,2,1,2017,1,Hamburg,,15,,,1
 yk,Y-Kollektiv,ARD,1110,u,2,1,2016,3,Hamburg,,15,13/07/23,,
