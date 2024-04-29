@@ -22,10 +22,15 @@ Die Werte in der Spalte "to" definieren Empfänger in ungerichteten Netzwerken. 
 Das Edge-Attribut "relationship" definiert die Art der Beziehung zwischen den Knoten, da es sich um ein multiplexes Netzwerk mit verschiedenen Beziehungsarten handelt. 
 
 1 = Teil des Funk Netzwerks | Kantenattribut welches zwischen Funk und den jeweiligen Funk Kanälen und Partnern besteht.
+
 2 = Reaction | Ein Knoten hat "Reaction" Videos über Inhalte eines anderen Knotens erstellt.
+
 3 = Positive Erwähnung | Ein Knoten erwähnte den anderen Knoten positiv in seinen Videos.
+
 4 = Kritik | Ein Knoten erstellte Kritikvideos über den Knoten.
+
 5 = Ehemaliges Funknetzwerk | Der Knoten war in einem Geschäftsverhältniss mit dem Funk Knoten.
+
 6 = Kollaboration | Zwischen zwei Knoten fand eine Kollaboration statt.
 
 **weight**   
