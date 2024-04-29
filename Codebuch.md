@@ -37,8 +37,11 @@ Das Edge-Attribut "relationship" definiert die Art der Beziehung zwischen den Kn
 Das Edge-Attribut "weight" definiert die Gewichtung, welche wir anhand der Nummer von erstellten Videos zwischen zwei Knoten festlegen.
 
 1 = 0 Video
+
 2 = 1 Video
+
 3 = 2 Videos
+
 4 = ab 3 Videos 
 
 # NODE-Attribute  
@@ -57,8 +60,11 @@ Nennt die jeweilige Person, Gruppe oder Institution die den Kanal leitet.
 
 **funk**    
 Definiert ob der Kanal zu Funk gehört, nicht zu Funk gehört oder ehemalig zu Funk gehörte. 
+
 1 = Ja
+
 2 = Nein
+
 3 = Ehemalig
   
 **Wohnsitz/Produktionsort**  
