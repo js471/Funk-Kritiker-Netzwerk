@@ -87,9 +87,4 @@ Zählt wie viele Kritikvideos gegenüber STRG+F und Funk im genannten Zeitraum e
 **reaktion_kritik**  
 Zählt wie viele Videos von Funk Kanälen als Antwort auf Kritikvideos erschienen sind.
 
-# Fehlende Werte
-99 = fehlende Werte  
-(etwa wenn diese nicht verfügbar waren oder wenn das Attribut nur auf Personen bezogen ist, wurde bei Knoten des Typs 2 (Aktion) dieser Wert vergeben)  
-Eine vorherige Codierung mit "NA" hat zu Problemen bei der Netzwerkgenerierung geführt, was mit Vergabe des Werts "99" stattdessen behoben werden konnte.
-
 ##
