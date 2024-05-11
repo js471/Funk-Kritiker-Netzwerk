@@ -2,17 +2,22 @@
 title: "Netzwerkanalyse Funk-Kritiker Netzwerk"
 author: "Jenny Le, Jörn Seemann, Eva Fiona Schöner, Nomi Wiesner und Dominik Türk"
 date: "2024-05-01"
-output: html_document
-—
+output:
+  html_document:
+    df_print: paged
+    toc: yes
+    toc_depth: 3
+    number_sections: yes
+  word_document:
+    toc: yes
+    toc_depth: '3'
+  pdf_document:
+    toc: yes
+    toc_depth: '3'
+---
+
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-
-# Programmbibliotheken laden
-library(tidyverse)
-library(igraph)
-library(ggraph)
-library(ggplot2)
-
+knitr::opts_chunk$set(echo = FALSE)
 ```
 
 # Einleitung
@@ -58,6 +63,7 @@ Unter dem Link https://github.com/js471/Funk-Kritiker-Netzwerk/blob/main/Codebuc
 # Analyse und Interpretation
 
 # Das Gesamtnetzwerk
+Wir wollen jetzt das Gesamtnetzwerk analysieren und interpretieren. Das Gesamtnetzwerk umfasst 76 Knoten und 250 Verbindungen. 
 
 ## 1) Themenfeld
 
@@ -65,7 +71,18 @@ Wir wollen ein Netzwerk erschaffen, welches die Gesamtheit des Funk Netzwerkes d
 
 ## 2) Gerichtetes Gesamtnetzwerk erstellen
 
-```{r Erstellen des Dataset}
+```{r Packages abrufen, include=FALSE}
+
+#Vorab werden die Packages abgerufen mit denen wir unser Netzwerk darstellen wollen
+
+library(tidyverse)
+library(igraph)
+library(ggraph)
+library(ggplot2)
+
+```
+
+```{r Erstellen des Dataset, fig.height=10, fig.width=16, message=FALSE, warning=FALSE, paged.print=FALSE, echo=FALSE}
 
 # Github Link:
 # https://github.com/js471/Funk-Kritiker-Netzwerk
@@ -92,7 +109,7 @@ graph <- graph_from_data_frame(d = edgematrix, vertices = nodes, directed = TRUE
 
 ## 3) Netzwerkanalyse
 
-```{r echo=FALSE, fig.height=16, fig.width=20}
+```{r fig.height=10, fig.width=16, message=FALSE, warning=FALSE, include=FALSE, paged.print=FALSE}
 # Parameter zu Beschreibung des Netzwerks
 
 # Das Netzwerk ist nicht vereinfacht
@@ -128,7 +145,7 @@ triad.census(s)
 
 ## 4) iGraph Visualisierung
 
-```{r Einfache Visualisierung des erstellten Objekt, echo=FALSE, fig.height=9, fig.width=16}
+```{r Einfache Visualisierung des erstellten Objekt, fig.height=10, fig.width=16, message=FALSE, warning=FALSE, paged.print=FALSE, echo=FALSE}
 
 plot(graph,
  	layout = layout_with_kk(graph),         	# Layout-Algorithmus
@@ -145,7 +162,7 @@ plot(graph,
 
 ## 5) iGraph Visualisierung ohne Einzelkanten
 
-```{r echo=FALSE, fig.height=9, fig.width=16}
+```{r fig.height=10, fig.width=16, message=FALSE, warning=FALSE, paged.print=FALSE, echo=FALSE}
 
 # Degree berechnen
 degree(s)
@@ -276,10 +293,12 @@ ecount(funkn) # 62 Kanten
 
 
 ```
+Das Funk Netzwerk besteht aus 46 Knoten und 62 Verbindungen. Das beinhaltet sowohl aktive als auch ehemalige Kanäle. Anhand der Visualisierung erkennt man das 13 Kanäle früher unter Funk standen. Damit sind derzeitig 32 Kanäle unter Funk auf YouTube aktiv, wenn man Funk selbst noch abzieht.
+
 
 ## 7) Kritiker-Netzwerk (Teilnetzwerk des Gesamtnetzwerkes)
 
-```{r echo=FALSE, fig.height=9, fig.width=16}
+```{r echo=FALSE, fig.height=10, fig.width=16, message=FALSE, warning=FALSE, paged.print=FALSE, echo=FALSE}
 
 # Nodelist einlesen
 nodes <- read.csv("https://raw.githubusercontent.com/js471/Funk-Kritiker-Netzwerk/main/nodelist.csv", header=T, as.is=T, sep = ",")
@@ -354,7 +373,7 @@ E(s_lc) [E(s_lc)$relationship == 2]$color <- "pink"	# Reactions
 E(s_lc) [E(s_lc)$relationship == 3]$color <- "#72C0A4" # Positive Erwähnung
 E(s_lc) [E(s_lc)$relationship == 6]$color <- "#FFCF5A" # Kollaboration
 
-# Visualisierung dergrößten Cique
+# Visualisierung dergrößten Clique
 plot(s_lc,
  	layout=layout.fruchterman.reingold,          	# Layout-Algorithmus
  	vertex.color="#EF7B79",                      	# Farbe der Knoten  
@@ -388,10 +407,12 @@ ecount(s_lc) # 11 Kanten
 
 
 ```
+Das Kritiker Netzwerk besteht aus insgesamt 30 verschiedenen YouTube Kanälen mit 113 Verbindungen untereinander. Damit sind die Kritiker deutlich vielseitiger miteinander verbunden als die Funk Kanäle. Der Kanal Renzo hat den höchsten Indegree Wert, da viele auf ihn und seinen Contact reagiert haben. Den höchsten Outdegree Wert hat KuchenTV, da dieser mit seinen Kritikvideos und Reactions mit vielen anderen Kanälen eine Verbindung erzeugt.
+
 
 ## 8) Egonetzwerk von dem Knoten: Renzo
 
-```{r}
+```{r fig.height=10, fig.width=16, message=FALSE, warning=FALSE, paged.print=FALSE, echo=FALSE}
 # Nodelist einlesen
 nodes <- read.csv("https://raw.githubusercontent.com/js471/Funk-Kritiker-Netzwerk/main/nodelist.csv", header=T, as.is=T, sep = ",")
 
@@ -462,7 +483,7 @@ ecount(renzo1) # 71 Kanten
 
 ## 9) Egonetzwerk Renzo zweiter Ordnung
 
-```{r}
+```{r fig.height=10, fig.width=16, message=FALSE, warning=FALSE, paged.print=FALSE, echo=FALSE}
 # selektiert aus dem Netzwerk alle Knoten, die mit Renzo über einen Schritt verbunden sind
 renzol <- make_ego_graph(s, order = 2, nodes = V(s)$name == "Renzo", mode ="all")
 
@@ -515,7 +536,7 @@ plot(renzo2,
 
 ## 10) Egonetzwerk von Renzo dritter Ordnung
 
-```{r}
+```{r fig.height=10, fig.width=16, message=FALSE, warning=FALSE, paged.print=FALSE, echo=FALSE}
 # Nodelist einlesen
 nodes <- read.csv("https://raw.githubusercontent.com/js471/Funk-Kritiker-Netzwerk/main/nodelist.csv", header=T, as.is=T, sep = ",")
 
@@ -592,7 +613,7 @@ par(mfrow=c(1,1), mar=c(0,0,1,2))
 
 ## 10) Egonetzwerk von STRG_F
 
-```{r Egonetzwerk von STRG_F, fig.height=10, fig.width=20, message=FALSE, warning=FALSE, paged.print=FALSE}
+```{r Egonetzwerk von STRG_F, fig.height=10, fig.width=16, message=FALSE, warning=FALSE, paged.print=FALSE, echo=FALSE}
 
 # Nodelist einlesen
 nodes <- read.csv("https://raw.githubusercontent.com/js471/Funk-Kritiker-Netzwerk/main/nodelist.csv", header=T, as.is=T, sep = ",")
@@ -657,7 +678,7 @@ ecount(strgf) # 70 Kanten
 
 ## 11) Egonetzwerk von STRG_F zweiter Ordnung
 
-```{r Egonetzwerk von STRG_F, fig.height=10, fig.width=20, message=FALSE, warning=FALSE, paged.print=FALSE}
+```{r Egonetzwerk von STRG_F, fig.height=10, fig.width=16, message=FALSE, warning=FALSE, paged.print=FALSE, echo=FALSE}
 
 # Nodelist einlesen
 nodes <- read.csv("https://raw.githubusercontent.com/js471/Funk-Kritiker-Netzwerk/main/nodelist.csv", header=T, as.is=T, sep = ",")
@@ -722,7 +743,7 @@ ecount(strgfl) # 250 Kanten ->alle Knoten und Kanten des gesamten Netzwerks
 
 12.1) Renzo im Vergleich zu den anderen Knoten
 
-```{r}
+```{r fig.height=10, fig.width=16, message=FALSE, warning=FALSE, paged.print=FALSE, echo=FALSE}
 
 # Nodelist einlesen
 nodes <- read.csv("https://raw.githubusercontent.com/js471/Funk-Kritiker-Netzwerk/main/nodelist.csv", header=T, as.is=T, sep = ",")
