@@ -1,0 +1,736 @@
+---
+title: "Netzwerkanalyse Funk-Kritiker Netzwerk"
+author: "Jenny Le, Jörn Seemann, Eva Fiona Schöner, Nomi Wiesner und Dominik Türk"
+date: "2024-05-01"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+# Programmbibliotheken laden
+library(tidyverse)
+library(igraph)
+library(ggraph)
+library(ggplot2)
+
+```
+
+## 1) Themenfeld
+
+Wir wollen ein Netzwerk erschaffen, welches die Gesamtheit des Funk Netzwerkes des öffentlich rechtlichen Rundfunks darstellt. Dazu wollen wir einen Großteil der Kritiker von Funk visualisieren und herausfinden, wie die einzelnen Kanäle untereinander vernetzt sind. Dabei wollen wir uns darauf konzentrieren, ob es zu zwei Bubbles kommt, die durch wenige Akteure vernetzt werden.
+
+## 2) Gerichtetes Gesamtnetzwerk erstellen
+
+```{r Erstellen des Dataset, echo=TRUE, warning=FALSE}
+
+# Github Link: 
+# https://github.com/js471/Funk-Kritiker-Netzwerk
+
+#Codebuch Link:
+#https://github.com/js471/Funk-Kritiker-Netzwerk/blob/main/Codebuch.md 
+
+# Nodelist einlesen
+nodes <- read.csv("https://raw.githubusercontent.com/js471/Funk-Kritiker-Netzwerk/main/nodelist.csv", header=T, as.is=T, sep = ",")
+
+# Edgelist einlesen
+el <- read.csv("https://raw.githubusercontent.com/js471/Funk-Kritiker-Netzwerk/main/edgelist.csv", header=T, as.is=T, sep = ",")
+
+# Matrix erstellen
+edgematrix <-as.matrix(el)
+
+# Zusammenführen von Edge- und Nodelist als igraph-Objekt mit der Bezeichnung s
+s <- graph_from_data_frame(d=edgematrix, vertices=nodes, directed=T)
+
+# Gesamtnetzwerk gerichtet
+graph <- graph_from_data_frame(d = edgematrix, vertices = nodes, directed = TRUE)
+
+```
+
+## 3) Netzwerkanalyse
+
+```{r echo=FALSE, fig.height=16, fig.width=20}
+# Parameter zu Beschreibung des Netzwerks
+
+# Das Netzwerk ist nicht vereinfacht
+is.simple(s)
+
+# Das Netzwerk ist verbunden und besteht aus 76 Komponenten
+is.connected(s)
+components(s)
+
+# Das Netzwerk ist gewichtet
+is.weighted(s)
+
+# Das Netzwerk besteht aus 76 Knoten
+vcount(s)      
+
+# Und aus 250 Kannten
+ecount(s)
+
+# Dichte des Netzwerks = 0.0438
+edge_density(s, loops=FALSE)
+
+# Umfang des Netzwerks = 13
+diameter(s)
+
+# Pfaddistanzen (Distance) = weiteste Distanz sind 13 Knoten
+farthest_vertices(s)
+
+# Anzahl von Dyaden und Triaden
+dyad.census(s)
+triad.census(s)
+
+```
+
+## 4) iGraph Visualisierung
+
+```{r Einfache Visualisierung des erstellten Objekt, echo=FALSE, fig.height=9, fig.width=16}
+
+plot(graph, 
+     layout = layout_with_kk(graph),             # Layout-Algorithmus
+     vertex.label = V(graph)$kanal,              # Knotenbeschriftung
+     vertex.size = 8,                            # Größe der Knoten
+     edge.arrow.size=1,                          # Größe der Pfeile
+     edge.width = E(graph)$relationship,         # Größe der Kanten
+     vertex.color = "lightblue",                 # Farbe der Knoten
+     edge.color = "gray",                        # Farbe der Kanten
+     main = "Komplettes Funk-Kritiker Netzwerk") # Titel der Visualisierung
+
+
+```
+
+## 5) iGraph Visualisierung ohne Einzelkanten
+
+```{r echo=FALSE, fig.height=9, fig.width=16}
+
+# Degree berechnen
+degree(s)
+degree(s, mode="in")
+V(s)$degree <- degree(s)
+vertex.attributes(s)$degree
+
+# Rauslöschen aller Knoten mit einem Indegree-Wert unter 2
+sf<-delete.vertices(s, V(s)[degree<2])
+sf
+
+# Färben der Knoten: Kritiker-Kanal, Funk-Kanal, ehemaliger Funk-Kanal
+V(sf) [V(sf)$funk == 2]$color <- "#EF7B79" # Farbe der Kritiker-Knoten
+V(sf) [V(sf)$funk == 1]$color <- "#A952F7" # Farbe der Funk-Knoten
+V(sf) [V(sf)$funk == 3]$color <- "#4FD9FF" # Farbe der ehemaligen Funk-Knoten
+
+# Färben der Kanten:
+E(sf) [E(sf)$relationship == 1]$color <- "#6569A9" # Teil des Funknetzwerks
+E(sf) [E(sf)$relationship == 2]$color <- "pink"    # Reactions
+E(sf) [E(sf)$relationship == 3]$color <- "#72C0A4" # Positive Erwähnung
+E(sf) [E(sf)$relationship == 4]$color <- "#CA2A55" # Kritik
+E(sf) [E(sf)$relationship == 5]$color <- "#1D1321" # ehemaliges Funknetzwerk
+E(sf) [E(sf)$relationship == 6]$color <- "#FFCF5A" # Kollaboration
+
+# Visualisierung des Netzwerkes ohne Einzelkanten
+plot(sf, 
+     layout = layout_with_fr(sf),        # Layout-Algorithmus
+     vertex.label = V(sf)$kanal,         # Knotenbeschriftung
+     vertex.size = V(sf)$degree/2,       # Größe der Knoten
+     edge.arrow.size=1,                  # Größe der Pfeile
+     edge.width = E(graph)$relationship, # Größe der Kanten
+     main = "Funk-Kritker Netzwerk ohne Einzelkanten und Knotengröße abhängig von dem Indegree-Wert") # Titel der Visualisierung 
+
+# Anzahl der Knoten und Kanten
+vcount(sf) # mit 51 Knoten
+ecount(sf) # mit 225 Kanten
+
+
+# Zweite Visualisierung mit variierter Kanten-Farbe
+
+# Degree-Berechnung
+degree(s)
+V(s)$degree <- degree(s)
+vertex.attributes(s)$degree
+sfm<-delete.vertices(s, V(s)[degree<2])
+sfm 
+
+# Färben der Knoten: Kritiker-Kanal, Funk-Kanal, ehemaliger Funk-Kanal
+V(sfm) [V(sfm)$funk == 2]$color <- "#EF7B79" # Farbe der Kritiker-Knoten
+V(sfm) [V(sfm)$funk == 1]$color <- "#A952F7" # Farbe der Funk-Knoten
+V(sfm) [V(sfm)$funk == 3]$color <- "#4FD9FF" # Farbe der ehemaligen Funk-Knoten
+
+# Färben der Kanten:
+E(sfm) [E(sfm)$relationship == 1]$color <- "grey"    # Teil des Funknetzwerks
+E(sfm) [E(sfm)$relationship == 2]$color <- "pink"    # Reactions
+E(sfm) [E(sfm)$relationship == 3]$color <- "#72C0A4" # Positive Erwähnung
+E(sfm) [E(sfm)$relationship == 4]$color <- "#CA2A55" # Kritik
+E(sfm) [E(sfm)$relationship == 5]$color <- "grey"    # ehemaliges Funknetzwerk
+E(sfm) [E(sfm)$relationship == 6]$color <- "grey"    # Kollaboration
+
+plot(sfm, 
+     asp=0,
+     layout = layout_with_kk(sfm),                     # Layout-Algorithmus
+     vertex.label = V(sfm)$kanal,                      # Knotenbeschriftung
+     vertex.size = degree(sfm, mode="in")/2,           # Größe der Knoten
+     vertex.label.family = "sans",                     # gibt die Schriftart an
+     vertex.label.cex = 1,                             # gibt die Schriftartgröße an
+     edge.arrow.size=1,                                # Größe der Pfeile
+     edge.width = E(sfm)$weight,                       # Größe der Kanten
+     edge.curved = .2,                                 # Biegung der Kurven
+     edge.curved = curve_multiple(sfm),                # Keine Berührung der Kurven
+     main = "Funk-Kritker-Netzwerk ohne Einzelkanten mit eingefärbten Kanten: Kritik, positive Erwähnung und Reaction") # Titel der Visualisierung    
+
+
+```
+
+## 6) Funk-Netzwerk (Teilnetzwerk des Gesamtnetzwerkes)
+
+```{r echo=FALSE, fig.height=9, fig.width=16}
+
+# Nodelist einlesen
+nodes <- read.csv("https://raw.githubusercontent.com/js471/Funk-Kritiker-Netzwerk/main/nodelist.csv", header=T, as.is=T, sep = ",")
+
+# Edglist einlesen
+el <- read.csv("https://raw.githubusercontent.com/js471/Funk-Kritiker-Netzwerk/main/edgelist.csv", header=T, as.is=T, sep = ",")
+
+# Matrix erstellen
+edgematrix <-as.matrix(el)
+
+# zusammenführen von Edge- und Nodelist als igraph-Objekt s
+s <- graph_from_data_frame(d=edgematrix, vertices=nodes, directed=T)
+
+s # das Standard-Netzwerk wird abgerufen
+
+# alle Kanäle löschen, die nicht zum Funk-Netzwerk gehören oder gehörten
+funkn<-delete.vertices(s, V(s)[funk==2])
+
+#Test, um das Netzwerk vereinfacht darzustellen
+plot(funkn, 
+     main="Funk Netzwerk")
+
+# Anpassung der Darstellung der Knoten: verschiedene Formen und Farben zur besseren Unterscheidbarkeit
+
+V(funkn)[V(funkn)$funk == 1]$color <- "#A952F7"   # momentane Funk Kanäle in lila 
+
+V(funkn)[V(funkn)$funk == 3]$color <- "lightgray" # ehemalige Kanäle in hellgrau
+
+V(funkn)[V(funkn)$name == "funk"]$color <- "lightblue" # Funk wird in hellblau
+
+# das Funk Netzwerk grafisch darstellen
+plot(funkn, 
+     layout = layout_with_fr(funkn),      # Layout-Algorithmus
+     main="Funk Netzwerk",
+     vertex.label = V(funkn)$kanal,        # Knotenbeschriftung
+     vertex.size = 10,                    # Größe der Knoten
+     vertex.label.size = 2,               # Größe der Schrift
+     vertex.label.family = "sans",        # legt den Font fest
+     edge.arrow.size=1,                   # Größe der Pfeile
+     edge.width = E(graph)$relationship,  # Größe der Kanten
+     edge.color = "darkgray",             # Farbe der Kanten
+     asp = 0,
+     main = "Funk Netzwerk")              # Titel der Visualisierung     
+
+
+#Anzahl der Knoten und Kanten
+vcount(funkn) # 46 Knoten
+ecount(funkn) # 62 Kanten
+
+
+```
+
+## 7) Kritiker-Netzwerk (Teilnetzwerk des Gesamtnetzwerkes)
+
+```{r echo=FALSE, fig.height=9, fig.width=16}
+
+# Nodelist einlesen
+nodes <- read.csv("https://raw.githubusercontent.com/js471/Funk-Kritiker-Netzwerk/main/nodelist.csv", header=T, as.is=T, sep = ",")
+
+# Edglist einlesen
+el <- read.csv("https://raw.githubusercontent.com/js471/Funk-Kritiker-Netzwerk/main/edgelist.csv", header=T, as.is=T, sep = ",")
+
+# Matrix erstellen
+edgematrix <-as.matrix(el)
+
+# zusammenführen von Edge- und Nodelist als igraph-Objekt s
+s <- graph_from_data_frame(d=edgematrix, vertices=nodes, directed=T)
+
+s # das Standard-Netzwerk wird abgerufen
+
+# löschen von allen Kanälen außer den Kritiker-Kanälen
+kritiker<-delete.vertices(s, V(s)[funk!=2])
+
+# Degree-Berechnung
+degree(kritiker)
+degree(kritiker, mode="in")
+V(kritiker)$degree <- degree(kritiker)
+vertex.attributes(kritiker)$degree
+
+# einfache Visualisierung des Kritiker-Netzwerks
+plot(kritiker, 
+     layout = layout_with_fr(kritiker),       # Layout-Algorithmus
+     vertex.label = V(kritiker)$kanal,        # Knotenbeschriftung
+     vertex.size = V(kritiker)$degree,        # Größe der Knoten 
+     edge.arrow.size=1,                       # Größe der Pfeile
+     edge.width = E(kritiker)$weight,         # Größe der Kanten
+     vertex.color = "#EF7B79",                # Farbe der Knoten
+     edge.color = "gray",                     # Farbe der Kanten
+     main = "Kritiker Netzwerk")              # Titel der Visualisierung 
+
+#Anzahl der Knoten und Kanten
+vcount(kritiker) # 30 Knoten
+ecount(kritiker) # 113 Kanten
+
+
+# Kritiker-Netwerk mit gefärbten Beziehungen
+
+E(kritiker) [E(kritiker)$relationship == 2]$color <- "pink"     # Reactions
+E(kritiker) [E(kritiker)$relationship == 3]$color <- "#72C0A4"  # positive Erwähnung
+E(kritiker) [E(kritiker)$relationship == 6]$color <- "#FFCF5A"  # Kollaboration
+
+plot(kritiker, 
+     asp=0,
+     layout = layout_with_kk(kritiker),               # Layout-Algorithmus
+     vertex.label = V(kritiker)$kanal,                # Knotenbeschriftung
+     vertex.size = V(kritiker)$degree/2,              # Größe der Knoten
+     vertex.label.family = "sans",                    # gibt die Schriftart an
+     vertex.label.cex = 1,                            # gibt die Schriftartgröße an
+     edge.arrow.size=1,                               # Größe der Pfeile
+     vertex.color = "#EF7B79",                        # Farbe der Knoten
+     edge.width = E(kritiker)$weight,                 # Größe der Kanten
+     edge.curved = .2,                                # Biegung der Kurven
+     edge.curved = curve_multiple(kritiker),          # keine Berührung der Kurven
+     main = "Beziehungen im Kritiker-Netzwerk")       # Titel der Visualisierung    
+
+# Zählt die Cliquen im Netzwerk
+clique_num(kritiker)
+
+# listet die Cliquen im Netzwerk auf
+lc <- largest_cliques(kritiker)
+lc
+
+# Umwandlung für die Visualisierung
+V(kritiker)$label <- V(kritiker)$name
+s_lc <- subgraph(kritiker, lc[[1]])
+E(s_lc) [E(s_lc)$relationship == 2]$color <- "pink"    # Reactions
+E(s_lc) [E(s_lc)$relationship == 3]$color <- "#72C0A4" # Positive Erwähnung
+E(s_lc) [E(s_lc)$relationship == 6]$color <- "#FFCF5A" # Kollaboration
+
+# Visualisierung dergrößten Cique 
+plot(s_lc, 
+     layout=layout.fruchterman.reingold,              # Layout-Algorithmus
+     vertex.color="#EF7B79",                          # Farbe der Knoten  
+     vertex.label.family = "sans",                    # gibt die Schriftart an
+     vertex.label.cex = 1,                            # gibt die Schriftartgröße an
+     edge.curved = .2,                                # Biegung der Kurven
+     edge.curved = curve_multiple(s_lc)    ,          # keine Berührung der Kurven
+     vertex.label = V(s_lc)$kanal    ,                # Knotenbeschriftung
+     vertex.size = V(s_lc)$in_degrees,                # Größe der Knoten
+     edge.arrow.size=1,                               # Größe der Pfeile
+     edge.width = E(s_lc)$weight,                     # Größe der Kanten
+     main = "Größte Clique unter den Kritikern")
+
+# Degree-Berechnung in der Clique
+in_degrees <- degree(s_lc, mode = "in")
+in_degrees
+
+# Knoten mit dem höchsten Indegree
+which.max(in_degrees) # Renzo mit 4 Indegrees
+
+# Degree-Berechnung in der Clique
+out_degrees <- degree(s_lc, mode = "out")
+out_degrees
+
+# Knoten mit dem höchsten Outdegree
+which.max(out_degrees) # KuchenTV mit 
+
+#Anzahl der Knoten und Kanten
+vcount(s_lc) # 5 Knoten
+ecount(s_lc) # 11 Kanten
+
+
+```
+
+## 8) Egonetzwerk von dem Knoten: Renzo
+
+```{r}
+# Nodelist einlesen
+nodes <- read.csv("https://raw.githubusercontent.com/js471/Funk-Kritiker-Netzwerk/main/nodelist.csv", header=T, as.is=T, sep = ",")
+
+# Edglist einlesen
+el <- read.csv("https://raw.githubusercontent.com/js471/Funk-Kritiker-Netzwerk/main/edgelist.csv", header=T, as.is=T, sep = ",")
+
+# Matrix erstellen
+edgematrix <-as.matrix(el)
+
+# zusammenführen von Edge- und Nodelist als igraph-Objekt s
+s <- graph_from_data_frame(d=edgematrix, vertices=nodes, directed=T)
+
+# selektiert aus dem Netzwerk alle Knoten, die mit Renzo über einen Schritt verbunden sind
+renzo <- make_ego_graph(s, order = 1, nodes = V(s)$name == "Renzo", mode ="all")
+
+#Zwischenschritt
+renzo1 <- renzo[[1]]
+renzo1
+
+
+# Färben der Knoten: Kritiker-Kanal, Funk-Kanal, ehemaliger Funk-Kanal
+V(renzo1) [V(renzo1)$funk == 2]$color <- "#EF7B79" # Farbe der Kritiker-Knoten
+V(renzo1) [V(renzo1)$funk == 1]$color <- "#A952F7" # Farbe der Funk-Knoten
+V(renzo1) [V(renzo1)$funk == 3]$color <- "#4FD9FF" # Farbe der ehemaligen Funk-Knoten
+
+# einfache Visualisierung erstellen
+plot(renzo1, 
+     asp=0,
+     layout = layout_with_kk(renzo1),      # Layout-Algorithmus
+     vertex.label = V(renzo1)$kanal,       # Knotenbeschriftung
+     vertex.label.family = "sans",         # gibt die Schriftart an
+     vertex.size = 6,                      # Größe der Knoten
+     vertex.label.cex = 1,                 # gibt die Schriftartgröße an
+     edge.arrow.size=1,                    # Größe der Pfeile
+     edge.width = E(renzo1)$weight,        # Größe der Kanten
+     edge.curved = .2,                     # Biegung der Kurven
+     edge.curved = curve_multiple(renzo1), # keine Berührung der Kurven
+     main = "Egonetzwerk von Renzo")       # Titel der Visualisierung    
+
+
+
+# Kantendetails zuweisen basierend auf relationship
+E(renzo1)[E(renzo1)$relationship == 2]$color <- "pink"     # Reactions
+E(renzo1)[E(renzo1)$relationship == 3]$color <- "#72C0A4"  # Positive Erwähnung
+E(renzo1)[E(renzo1)$relationship == 6]$color <- "#FFCF5A"  # Kollaboration
+E(renzo1)[E(renzo1)$relationship == 4]$color <- "#CA2A55"  # Kritik
+
+# Visualisierung mit eingefärbten Kanten erstellen
+plot(renzo1, 
+     asp=0,
+     layout = layout_with_kk(renzo1),                        # Layout-Algorithmus
+     vertex.label = V(renzo1)$kanal,                         # Knotenbeschriftung
+     vertex.size = degree(renzo1, mode="in"),                # Größe der Knoten
+     vertex.label.family = "sans",                           # gibt die Schriftart an
+     vertex.label.cex = 1,                                   # gibt die Schriftartgröße an
+     edge.arrow.size=.5,                                     # Größe der Pfeile
+     edge.width = E(renzo1)$weight,                          # Größe der Kanten
+     edge.curved = .2,                                       # Biegung der Kurven
+     edge.curved = curve_multiple(renzo1),                   # keine Berührung der Kurven
+     main = "Egonetzwerk von Renzo mit eingefärbten Kanten") # Titel der Visualisierung    
+
+#Anzahl der Knoten und Kanten
+vcount(renzo1) # 16 Knoten
+ecount(renzo1) # 71 Kanten
+
+
+```
+
+## 9) Egonetzwerk Renzo zweiter Ordnung
+
+```{r}
+# selektiert aus dem Netzwerk alle Knoten, die mit Renzo über einen Schritt verbunden sind
+renzol <- make_ego_graph(s, order = 2, nodes = V(s)$name == "Renzo", mode ="all")
+
+#Zwischenschritt
+renzo2 <- renzol[[1]]
+renzo2
+
+
+# Färben der Knoten: Kritiker-Kanal, Funk-Kanal, ehemaliger Funk-Kanal
+V(renzo2) [V(renzo2)$funk == 2]$color <- "#EF7B79" # Farbe der Kritiker-Knoten
+V(renzo2) [V(renzo2)$funk == 1]$color <- "#A952F7" # Farbe der Funk-Knoten
+V(renzo2) [V(renzo2)$funk == 3]$color <- "#4FD9FF" # Farbe der ehemaligen Funk-Knoten
+
+# einfache Visualisierung erstellen
+plot(renzo2, 
+     asp=0,
+     layout = layout_with_kk(renzo2),      # Layout-Algorithmus
+     vertex.label = V(renzo2)$kanal,       # Knotenbeschriftung
+     vertex.label.family = "sans",         # gibt die Schriftart an
+     vertex.size = 3,                      # Größe der Knoten
+     vertex.label.cex = 0.5,               # gibt die Schriftartgröße an
+     edge.arrow.size=0.2,                  # Größe der Pfeile
+     edge.width = 0.5,                     # Größe der Kanten
+     edge.curved = .2,                     # Biegung der Kurven
+     edge.curved = curve_multiple(renzo2), # keine Berührung der Kurven
+     main = "Egonetzwerk von Renzo")       # Titel der Visualisierung    
+
+
+
+# Kantendetails zuweisen basierend auf relationship
+E(renzo2)[E(renzo2)$relationship == 2]$color <- "pink"     # Reactions
+E(renzo2)[E(renzo2)$relationship == 3]$color <- "#72C0A4"  # Positive Erwähnung
+E(renzo2)[E(renzo2)$relationship == 6]$color <- "#FFCF5A"  # Kollaboration
+E(renzo2)[E(renzo2)$relationship == 4]$color <- "#CA2A55"  # Kritik
+
+# Visualisierung mit eingefärbten Kanten erstellen
+plot(renzo2, 
+     asp=0,
+     layout = layout_with_kk(renzo2),                        # Layout-Algorithmus
+     vertex.label = V(renzo2)$kanal,                         # Knotenbeschriftung
+     vertex.size = degree(renzo2, mode="in"),                # Größe der Knoten
+     vertex.label.family = "sans",                           # gibt die Schriftart an
+     vertex.label.cex = 1,                                   # gibt die Schriftartgröße an
+     edge.arrow.size=.5,                                     # Größe der Pfeile
+     edge.width = E(renzo2)$weight,                          # Größe der Kanten
+     edge.curved = .2,                                       # Biegung der Kurven
+     edge.curved = curve_multiple(renzo2),                   # keine Berührung der Kurven
+     main = "Egonetzwerk von Renzo mit eingefärbten Kanten") # Titel der Visualisierung    
+```
+
+## 10) Egonetzwerk von Renzo dritter Ordnung
+
+```{r}
+# Nodelist einlesen
+nodes <- read.csv("https://raw.githubusercontent.com/js471/Funk-Kritiker-Netzwerk/main/nodelist.csv", header=T, as.is=T, sep = ",")
+
+# Edglist einlesen
+el <- read.csv("https://raw.githubusercontent.com/js471/Funk-Kritiker-Netzwerk/main/edgelist.csv", header=T, as.is=T, sep = ",")
+
+# Matrix erstellen
+edgematrix <-as.matrix(el)
+
+# zusammenführen von Edge- und Nodelist als igraph-Objekt s
+s <- graph_from_data_frame(d=edgematrix, vertices=nodes, directed=T)
+
+# selektiert aus dem Netzwerk alle Knoten, die mit Renzo über einen Schritt verbunden sind
+renzool <- make_ego_graph(s, order = 3, nodes = V(s)$name == "Renzo", mode ="all")
+
+#Zwischenschritt
+renzo3 <- renzool[[1]]
+renzo3
+
+
+# Färben der Knoten: Kritiker-Kanal, Funk-Kanal, ehemaliger Funk-Kanal
+V(renzo3) [V(renzo3)$funk == 2]$color <- "#EF7B79" # Farbe der Kritiker-Knoten
+V(renzo3) [V(renzo3)$funk == 1]$color <- "#A952F7" # Farbe der Funk-Knoten
+V(renzo3) [V(renzo3)$funk == 3]$color <- "#4FD9FF" # Farbe der ehemaligen Funk-Knoten
+
+# einfache Visualisierung erstellen
+plot(renzo3, 
+     asp=0,
+     layout = layout_with_kk(renzo3),      # Layout-Algorithmus
+     vertex.label = V(renzo3)$kanal,       # Knotenbeschriftung
+     vertex.label.family = "sans",         # gibt die Schriftart an
+     vertex.size = 3,                      # Größe der Knoten
+     vertex.label.cex = 0.5,               # gibt die Schriftartgröße an
+     edge.arrow.size=0.2,                  # Größe der Pfeile
+     edge.width = 0.5,                     # Größe der Kanten
+     edge.curved = .2,                     # Biegung der Kurven
+     edge.curved = curve_multiple(renzo3), # keine Berührung der Kurven
+     main = "Egonetzwerk von Renzo")       # Titel der Visualisierung    
+
+
+
+# Kantendetails zuweisen basierend auf relationship
+E(renzo3)[E(renzo3)$relationship == 2]$color <- "pink"     # Reactions
+E(renzo3)[E(renzo3)$relationship == 3]$color <- "#72C0A4"  # Positive Erwähnung
+E(renzo3)[E(renzo3)$relationship == 6]$color <- "#FFCF5A"  # Kollaboration
+E(renzo3)[E(renzo3)$relationship == 4]$color <- "#CA2A55"  # Kritik
+
+# Visualisierung mit eingefärbten Kanten erstellen
+plot(renzo3, 
+     asp=0,
+     layout = layout_with_kk(renzo3),                        # Layout-Algorithmus
+     vertex.label = V(renzo3)$kanal,                         # Knotenbeschriftung
+     vertex.size = degree(renzo3, mode="in"),                # Größe der Knoten
+     vertex.label.family = "sans",                           # gibt die Schriftart an
+     vertex.label.cex = 1,                                   # gibt die Schriftartgröße an
+     edge.arrow.size=.5,                                     # Größe der Pfeile
+     edge.width = E(renzo3)$weight,                          # Größe der Kanten
+     edge.curved = .2,                                       # Biegung der Kurven
+     edge.curved = curve_multiple(renzo3),                   # keine Berührung der Kurven
+     main = "Egonetzwerk von Renzo mit eingefärbten Kanten") # Titel der Visualisierung    
+
+#Anzahl der Knoten und Kanten
+vcount(renzo3) # 76 Knoten
+ecount(renzo3) # 250 Kanten #ab dritten Grad kommen die Funk-Kanäle hinzu-> komplettes Netzwerk
+
+# Darstellung als Vergleich:
+par(mfrow=c(1,3), mar=c(0,0,1,2))
+plot(renzo1, edge.arrow.size=.3, main="Erster Grad")
+plot(renzo2, edge.arrow.size=.3,  main="Zweiter Grad")
+plot(renzo3, edge.arrow.size=.3, main="Dritter Grad")
+
+par(mfrow=c(1,1), mar=c(0,0,1,2))
+```
+
+## 10) Egonetzwerk von STRG_F
+
+```{r Egonetzwerk von STRG_F, fig.height=10, fig.width=20, message=FALSE, warning=FALSE, paged.print=FALSE}
+
+# Nodelist einlesen
+nodes <- read.csv("https://raw.githubusercontent.com/js471/Funk-Kritiker-Netzwerk/main/nodelist.csv", header=T, as.is=T, sep = ",")
+
+# Edglist einlesen
+el <- read.csv("https://raw.githubusercontent.com/js471/Funk-Kritiker-Netzwerk/main/edgelist.csv", header=T, as.is=T, sep = ",")
+ 
+# Matrix erstellen
+edgematrix <-as.matrix(el)
+
+# zusammenführen von Edge- und Nodelist als igraph-Objekt s
+s <- graph_from_data_frame(d=edgematrix, vertices=nodes, directed=T)
+
+s # das Standard-Netzwerk wird abgerufen
+strg <- make_ego_graph(s, order=1, nodes = V(s)$name == "STRG_F", mode = "all") #erstellt ein Ego-Netzwerk um STRG_F herum.
+vertices(strg)
+edges(strg)
+
+#Notwendiger Schritt um das Ego-Netzwerk zu erstellen
+strgf <- strg[[1]]
+
+# Anpassung der Darstellung der Knoten: verschiedene Formen und Farben zur besseren Unterscheidbarkeit.
+V(strgf)[V(strgf)$name == "STRG_F"]$color <- "lightblue"               # STRG_F in hellblau
+V(strgf)[V(strgf)$name == "funk"]$color <- "#A952F7"                   # Funk Kanal in lila
+V(strgf)[V(strgf)$name == "Der Dunkle Parabelritter"]$color <- "lightgrey" # dunkle Parabelritter in hellgrau
+V(strgf)[V(strgf)$funk == 2]$color <- "#EF7B79"                   # Kritiker in rot 
+
+# erster Test um das Ego-Netzwerk darzustellen
+plot(strgf, 
+     main="STRG_F Ego Netzwerk")
+
+# Färben der Kanten:
+E(strgf) [E(strgf)$relationship == 1]$color <- "#6569A9" # Teil des Funknetzwerks
+E(strgf) [E(strgf)$relationship == 2]$color <- "pink"    # Reactions
+E(strgf) [E(strgf)$relationship == 3]$color <- "#72C0A4" # Positive Erwähnung
+E(strgf) [E(strgf)$relationship == 4]$color <- "#CA2A55" # Kritik
+E(strgf) [E(strgf)$relationship == 5]$color <- "#1D1321" # ehemaliges Funknetzwerk
+E(strgf) [E(strgf)$relationship == 6]$color <- "#FFCF5A" # Kollaboration
+
+
+# Visualisierung des Netzwerks:
+plot(strgf, 
+     layout=layout_with_kk(strgf),                           # Layout-Algorithmus
+     main="Ego-Netzwerk von STRG_F",                        # Titel der Visualisierung 
+     vertex.size=degree(strgf,mode="in"),                    # Größe der Knoten
+     vertex.label = V(strgf)$kanal,                          # Knotenbeschriftung
+     vertex.label.cex = 1,                                   # gibt die Schriftartgröße an
+     edge.arrow.size=1,                                      # Größe der Pfeile
+     edge.curved = .2,                                       # Biegung der Kurven
+     edge.curved = curve_multiple(strgf),                    # keine Berührung der Kurven
+     vertex.label.family="sans",                             # gibt die Schriftart an
+     vertex.frame.color=NA,                                  # entfernt den Rahmen um die Knoten
+     edge.width = E(strgf)$weight,                           # Kantengröße nach Videoalzahl
+     asp=0,                                                  # definiert, dass der gesamte Raum ausgenutzt werden soll
+rescale=T) 
+
+#Anzahl der Knoten und Kanten
+vcount(strgf) # 18 Knoten
+ecount(strgf) # 70 Kanten
+     
+```
+
+## 11) Egonetzwerk von STRG_F zweiter Ordnung
+
+```{r Egonetzwerk von STRG_F, fig.height=10, fig.width=20, message=FALSE, warning=FALSE, paged.print=FALSE}
+
+# Nodelist einlesen
+nodes <- read.csv("https://raw.githubusercontent.com/js471/Funk-Kritiker-Netzwerk/main/nodelist.csv", header=T, as.is=T, sep = ",")
+
+# Edglist einlesen
+el <- read.csv("https://raw.githubusercontent.com/js471/Funk-Kritiker-Netzwerk/main/edgelist.csv", header=T, as.is=T, sep = ",")
+
+# Matrix erstellen
+edgematrix <-as.matrix(el)
+
+# zusammenführen von Edge- und Nodelist als igraph-Objekt s
+s <- graph_from_data_frame(d=edgematrix, vertices=nodes, directed=T)
+
+s # das Standard-Netzwerk wird abgerufen
+strgl <- make_ego_graph(s, order=2, nodes = V(s)$name == "STRG_F", mode = "all") #erstellt ein Ego-Netzwerk um STRG_F herum.
+vertices(strgl)
+edges(strgl)
+
+# notwendiger Schritt um das Ego-Netzwerk zu erstellen
+strgfl <- strgl[[1]]
+
+# Anpassung der Darstellung der Knoten: verschiedene Formen und Farben zur besseren Unterscheidbarkeit.
+V(strgfl)[V(strgfl)$name == "STRG_F"]$color <- "lightblue"               # STRG_F in hellblau
+V(strgfl)[V(strgfl)$name == "funk"]$color <- "#A952F7"                   # Funk Kanal in lila
+V(strgfl)[V(strgfl)$name == "Der Dunkle Parabelritter"]$color <- "lightgrey" # dunkle Parabelritter in hellgrau
+V(strgfl)[V(strgfl)$funk == 2]$color <- "#EF7B79"                   # Kritiker in rot 
+
+#Erster Test um das Ego-Netzwerk darzustellen
+plot(strgfl, 
+     main="STRG_F Ego-Netzwerk zweiter Ordnung")
+
+# Färben der Kanten:
+E(strgfl) [E(strgfl)$relationship == 1]$color <- "#6569A9" # Teil des Funknetzwerks
+E(strgfl) [E(strgfl)$relationship == 2]$color <- "pink"    # Reactions
+E(strgfl) [E(strgfl)$relationship == 3]$color <- "#72C0A4" # Positive Erwähnung
+E(strgfl) [E(strgfl)$relationship == 4]$color <- "#CA2A55" # Kritik
+E(strgfl) [E(strgfl)$relationship == 5]$color <- "#1D1321" # ehemaliges Funknetzwerk
+E(strgfl) [E(strgfl)$relationship == 6]$color <- "#FFCF5A" # Kollaboration
+
+# Visualisierung des Netzwerks:
+plot(strgfl, 
+     layout=layout_with_kk(strgfl),                           # Layout-Algorithmus
+     main="Ego-Netzwerk zweiter Ordnung von STRG_F",                          # Titel der Visualisierung 
+     vertex.size=degree(strgfl,mode="in")/2,                  # Größe der Knoten
+     vertex.label = V(strgfl)$kanal,                          # Knotenbeschriftung
+     vertex.label.cex = 1,                                    # gibt die Schriftartgröße an
+     edge.arrow.size=1,                                       # Größe der Pfeile
+     edge.curved = .2,                                        # Biegung der Kurven
+     edge.curved = curve_multiple(strgfl),                    # keine Berührung der Kurven
+     vertex.label.family="sans",                              # gibt die Schriftart an
+     vertex.frame.color=NA,                                   # entfernt den Rahmen um die Knoten
+     edge.width = E(strgfl)$weight,                           # Kantengröße nach Videoalzahl
+     asp=0,                                                   # definiert, dass der gesamte Raum ausgenutzt werden soll
+rescale=T) 
+
+#Anzahl der Knoten und Kanten
+vcount(strgfl) # 76 Knoten
+ecount(strgfl) # 250 Kanten ->alle Knoten und Kanten des gesamten Netzwerks
+
+
+```
+
+12.1) Renzo im Vergleich zu den anderen Knoten
+
+```{r}
+
+# Nodelist einlesen
+nodes <- read.csv("https://raw.githubusercontent.com/js471/Funk-Kritiker-Netzwerk/main/nodelist.csv", header=T, as.is=T, sep = ",")
+
+# Edglist einlesen
+el <- read.csv("https://raw.githubusercontent.com/js471/Funk-Kritiker-Netzwerk/main/edgelist.csv", header=T, as.is=T, sep = ",")
+
+# Matrix erstellen
+edgematrix <-as.matrix(el)
+
+# Zusammenführen von Edge- und Nodelist als igraph-Objekt s
+s <- graph_from_data_frame(d=edgematrix, vertices=nodes, directed=T)
+
+# Gesamtnetzwerk gerichtet
+graph <- graph_from_data_frame(d = edgematrix, vertices = nodes, directed = TRUE)
+
+
+# Berechnung der Ratio und Sortierung
+ratio <- V(s)$kritikvideos / V(s)$upload
+sorted_indices <- order(ratio, decreasing = TRUE)
+sorted_ratio <- ratio[sorted_indices]
+kanalnamen <- V(s)$name [sorted_indices]
+
+# Erstellen des Datenrahmens
+sorted_data <- data.frame(Kanal = kanalnamen, Ratio = sorted_ratio)
+sorted_data2 <- subset(sorted_data, Ratio >= 0)
+
+# Ausgabe des Datenrahmens
+print(sorted_data2)
+
+# Daten erstellen
+sorted_data2 <- data.frame(
+  Kanal = kanalnamen,
+  Ratio = sorted_ratio
+)
+
+# Ersten 15 Werte aus sorted_data auswählen
+top_15 <- head(sorted_data2, 15)
+
+# Farbe des Balkens für den Kanal "Renzo" ändern
+top_15$color <- ifelse(top_15$Kanal == "Renzo", "red", "skyblue")
+
+
+# Balkendiagramm erstellen
+ggplot(top_15, aes(x = reorder(Kanal, -Ratio), y = Ratio, fill = color)) +
+  geom_bar(stat = "identity", color = "black") +
+  scale_fill_identity() +  # Verwendung der in den Daten angegebenen Farben
+  labs(
+    title = "Verhältnis von Kritikvideos zu Uploads nach Kanal",
+    x = "Kanal",
+    y = "Verhältnis"
+  ) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```
