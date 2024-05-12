@@ -889,3 +889,51 @@ ggplot(top_15, aes(x = reorder(Kanal, -Ratio), y = Ratio, fill = color)) +
   ) +
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
 ```
+
+# 6. Diskussion: Fazit, Limitationen und Ausblick
+
+##Fazit 
+
+Wir stellten zu Beginn der Datenerhebung zwei konkrete Arbeitshypothesen auf. Zum einen, dass sich Mitglieder des Funknetzwerks und des Kritiker-Netzwerks in klar abgetrennte Cluster aufhalten werden. Zusätzlich gingen wir davon aus, dass einzelne Personen oder Gruppen als Brücken zwischen den beiden Clustern agieren, indem sie bspw. mit beiden Clustern etwas zu tun hatten. 
+Unsere Analyse des Kritiker-Netzwerks hat uns aufgezeigt, dass sich unsere Hypothesen hauptsächlich in vielen Punkten bestätigt haben. Jedoch gibt es einige Ausnahmen.
+Im Grundsatz bewegen sich die Funkkanäle als auch die Kritiker vermehrt in ihren “Blasen”. Es herrschen nur wenige Überschneidungen. Die Ausnahmen bilden YouTuber wie Sashka, Alicia Joe und der dunkle Parabelritter, da diese im erhobenen Zeitraum mit Funk zusammengearbeitet haben. Dennoch kritisierten alle drei genannten YouTuber ebenso bestimmte Funkkanäle oder Formate des ÖRR. 
+Neben den erhobenen Daten zu Funkmitgliedern und den Kritikern Funks, haben wir Daten in Bezug auf die rechtspolitische Kritikerblase im Zusammenhang mit Funk geworfen. Diese zeichnet sich stark abgekapselt von den anderen beiden Clustern ab. 
+Auffallend sind die Unterschiede beider Cluster, da das Kritiker-Netzwerk weitaus dynamischer und freier miteinander vernetzt ist, als die Funkkanäle. Diese sind untereinander klar abgegrenzt und folgen ihren eigenen Konzepten. Kooperationen unter den einzelnen Funkkanälen selbst findet, bis auf selten wechselnden Moderatoren, so gut wie nicht statt. 
+Zusammengefasst konnten wir die Erkenntnis aus dem Kritiker-Netzwerk ziehen, dass sich Mitglieder von Funk als auch Kritiker meist in ihrem eigenen Umfeld aufhalten. Einige Überschneidungen bzw. Brückenknoten wie bisherige Zusammenarbeit mit Funk und eine kritische Haltung gegenüber Funk, tauchen im überschaubaren Maße auf. Während die Kritiker freier miteinander vernetzt waren, folgt Funk ein klar abgetrenntes Konzept, dass einzelne Funkkanäle nicht miteinander vermischt. 
+
+
+##Limitationen
+ 
+Die größte Einschränkung dieser Forschung liegt in den verfügbaren Daten. Die Analyse basiert ausschließlich auf öffentlich zugänglichen Datenquellen und berücksichtigt keine internen Daten des Funk-Netzwerks oder der Kritikergruppe. Dadurch ist die Tiefe und Genauigkeit der Analyse begrenzt. Darüber hinaus beschränkt sich unsere Untersuchung auf einen bestimmten Zeitraum von September 2023 bis Februar 2024, was die Verallgemeinerung der Ergebnisse einschränkt. Langzeitstudien könnten weitere Erkenntnisse liefern, insbesondere zur Entwicklung der Netzwerkstrukturen über einen längeren Zeitraum. 
+Zudem wurde unsere Forschung durch nicht nachvollziehbare private Daten von Creators limitiert. Sei es durch fehlende oder unvollständige Impressums oder unkenntlich gemachte Daten - ein hundertprozentiger Datensatz ist durch öffentlich einsehbare Daten nicht möglich.
+Ein weiterer begrenzender Faktor ist die ausschließlich quantitative Methodik, die wir gewählt haben. Qualitative Aspekte wie die inhaltliche Auseinandersetzung mit den Kritiken oder die Motivationen der Akteure wurden nicht erfasst. Eine qualitative Herangehensweise könnte ein umfassenderes Verständnis der Interaktionsdynamiken und inhaltlichen Debatten ermöglichen. 
+
+##Ausblick 
+
+Für zukünftige Forschungen wäre es interessant, eine detaillierte Analyse der Kommunikationsinhalte durchzuführen, um die spezifischen Themen und Kontroversen innerhalb des Netzwerks genauer zu erfassen. Insbesondere eine Textanalyse der veröffentlichten Beiträge und der dazugehörigen Kommentare könnte aufschlussreich sein. 
+Ein weiterer interessanter Forschungsbereich könnte die Untersuchung der Auswirkungen dieser Netzwerkstrukturen auf die öffentliche Meinungsbildung und die Rezipienten von Medieninhalten sein. Dabei könnte erforscht werden, wie die strukturellen Verbindungen und die Positionen einzelner Netzwerkakteure die Verbreitung und Wahrnehmung von Informationen beeinflussen. 
+Abschließend könnte die Entwicklung von Strategien zur Verbesserung der Kommunikation und Zusammenarbeit innerhalb des Netzwerks ein relevantes Forschungsziel darstellen. Fortführend zu unserer Datenerhebung, ein lösungsorientiertes Forschungsprojekt. Dabei könnten Maßnahmen zur Stärkung der Netzwerkbrücken und zur Förderung eines offenen, konstruktiven Dialogs erarbeitet werden. 
+
+
+## Datenmaterial und Skript
+Github Link mit allen wichtigen Daten: https://github.com/js471/Funk-Kritiker-Netzwerk 
+
+## Team, Arbeitsaufwand und Lessons Learned
+**Teammitglieder:**
+Dominik Türk, Nomi Wiesner, Fiona Schöner, Jörn Seemann, Jenny Le
+
+**Arbeitsaufwand und Rollen im Team**
+Dominik Türk: Datenbereinigung, Recherche, Literaturrecherche, Forschungsbericht (mind. 70 Stunden)
+Nomi Wiesner: Recherche, Literaturrecherche, Forschungsbericht (mind. 70 Stunden)
+Fiona Schöner: Coding, Datenanalyse, Datenauswertung, Literaturrecherche, Forschungsbericht (mind. 70 Stunden)
+Jörn Seemann: Coding, Datenanalyse, Datenauswertung, Literaturrecherche, Forschungsbericht (mind. 70 Stunden)
+Jenny Le: Projektleitung, Recherche, Literaturrecherche, Forschungsbericht (mind. 70 Stunden)
+
+Anhand der jeweiligen Interessen und Stärken jedes einzelnen Teammitglieds, haben wir die Hauptaufgaben dementsprechend aufgeteilt. Diejenigen, die sich mit RStudio und Coding gut auskennen, haben die Datenauswertung und Datenanalyse übernommen. Währenddessen übernahmen andere Mitglieder dafür die Hintergrundrecherchen sowie Überprüfung des bestehenden Forschungsstandes. 
+
+**Lessons learned**
+
+Die größte Erkenntnis, die wir aus der bisherigen Gruppenarbeit ziehen konnten waren Rollenverteilung sowie das Zeitmanagement. Von Anfang an hätten sich alle in das Thema einlesen müssen, sodass zumindest derselbe Wissensstand im Team herrscht. Durch verschiedene Kenntnisse rund um das Thema YouTube und öffentlicher Rundfunk, fiel es besonders am Anfang schwer präzise Rollen und zugehörige Aufgaben zu verteilen. Das erstreckte sich teilweise so weit hinaus, dass sich die Zeitplanung um mehrere Wochen verschob. Eine einheitliche und regelmäßigere Kommunikation untereinander hätte einige Missverständnisse, sowie versäumte interne Deadlines definitiv vorgebeugt. 
+Nichtsdestotrotz entstanden während des Projekts hindurch neue Perspektiven rund um YouTube und ihre Beziehung zum (jungen) öffentlichen Rundfunk. Viele Abläufe lernte man erst richtig kennen, nachdem man sich mit den Hintergründen des öffentlichen Rundfunks beschäftigt hatte und welche Kritik zum ÖFR tatsächlich berechtigt ist und welche nicht. 
+Die klare Abtrennung der Aufgaben hat letzten Endes seine Vor- und Nachteile gehabt. Zwar haben sich diejenigen mit Coding beschäftigt, die sich damit auskannten. Dennoch hätte es nicht geschadet, wenn für alle ein Grundverständnis zum Kritiker-Netzwerk bereitgestellt werden würde, sodass jeder weiß worum es geht. Jeder hat in seinem Bereich gut gearbeitet, aber wenig von den anderen Arbeitsbereichen mitbekommen. Gegen Ende des Projekts entstand jedoch für alle Arbeitsbereiche ein Grundverständnis, was sich in den finalen Abgaben der Abschlusspräsentation als auch der Aufteilung für den Forschungsbericht widerspiegelt.
+
