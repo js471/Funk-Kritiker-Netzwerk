@@ -176,7 +176,18 @@ plot(sfm,
      edge.curved = curve_multiple(sfm),                # Keine Berührung der Kurven
      main = "Funk-Kritker-Netzwerk ohne Einzelkanten mit eingefärbten Kanten: Kritik, positive Erwähnung und Reaction") # Titel der Visualisierung    
 
-
+legend("bottomleft", 
+       c("Funk Netzwerk","Ehemalig bei Funk", "Kritiker"),
+       col=c("#A952F7", "#4FD9FF", "#EF7B79"), 
+       pch = 19, 
+       border = "black", 
+       pt.cex=3, 
+       cex=1.5,
+       x.intersp = 1.5,
+       bty="o", 
+       bg = "grey90",
+       box.col = "grey50", 
+       ncol=1, )
 ```
 
 ## 6) Funk-Netzwerk (Teilnetzwerk des Gesamtnetzwerkes)
@@ -230,6 +241,12 @@ plot(funkn,
 #Anzahl der Knoten und Kanten
 vcount(funkn) # 46 Knoten
 ecount(funkn) # 62 Kanten
+
+#Zentralitätsmaße
+degree(funkn) #Funk hat den höchsten Degree Wert mit 60 
+degree(funkn, mode = "out") #Den höchsten Outdregree hat Funk mit 44
+degree(funkn, mode = "in") #Den höchsten Indegree hat Funk mit 16 und STRG_F mit 11
+betweenness(funkn) #Funk hat den höchsten betweeness Wert mit 687
 
 
 ```
@@ -337,7 +354,7 @@ out_degrees <- degree(s_lc, mode = "out")
 out_degrees
 
 # Knoten mit dem höchsten Outdegree
-which.max(out_degrees) # KuchenTV mit 
+which.max(out_degrees) # KuchenTV mit 3
 
 #Anzahl der Knoten und Kanten
 vcount(s_lc) # 5 Knoten
@@ -413,6 +430,12 @@ plot(renzo1,
 #Anzahl der Knoten und Kanten
 vcount(renzo1) # 16 Knoten
 ecount(renzo1) # 71 Kanten
+
+#Zentralitätsmaße
+degree(renzo1) #Renzo hat den höchsten Degree Wert mit 19 
+degree(renzo1, mode = "out") #Den höchsten Outdregree haben KuchenTV und Imp
+degree(renzo1, mode = "in") #Den höchsten Indegree hat Renzo mit 14 und STRG_F mit 11
+betweenness(renzo1) #Renzo hat den höchsten betweeness Wert mit 77,75%
 
 
 ```
