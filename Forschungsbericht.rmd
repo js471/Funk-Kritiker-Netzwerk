@@ -124,7 +124,7 @@ Unter dem Link https://github.com/js471/Funk-Kritiker-Netzwerk/blob/main/Codebuc
 # Analyse und Interpretation
 
 # Das Gesamtnetzwerk
-Wir wollen jetzt das Gesamtnetzwerk analysieren und interpretieren. Das Gesamtnetzwerk umfasst 76 Knoten und 250 Verbindungen. 
+Wir wollen jetzt das Gesamtnetzwerk analysieren und interpretieren. Es handelt sich dabei um ein gewichtetes und gerichtetes One-Mode Netzwerk. Das Gesamtnetzwerk wurde Syntax-basiert mit R Studio und den Zusatzpaketen iGraph, ggraph und ggplot2 visualisiert (Ellwardt et al., 2023). Dabei umfasst das Netzwerk 76 Knoten und 250 Verbindungen. Zudem spielen Zentralitätsmaße bei unserer Analyse eine wertvolle Rolle, vorangehend der degree Wert, sowohl in, out als auch gesamt. Ebenfalls interessant ist der betweeness Wert. Deser Wert misst das Ausmaß, in dem ein Knoten auf den kürzesten Wegen zwischen den anderen Knoten in dem Graphen positioniert ist (Mutschke, 2023).
 
 ## 1) Themenfeld
 
@@ -295,10 +295,23 @@ plot(sfm,
  	edge.width = E(sfm)$weight,                   	# Größe der Kanten
  	edge.curved = .2,                             	# Biegung der Kurven
  	edge.curved = curve_multiple(sfm),            	# Keine Berührung der Kurven
- 	main = "Funk-Kritker-Netzwerk ohne Einzelkanten mit eingefärbten Kanten: Kritik, positive Erwähnung und Reaction") # Titel der Visualisierung    
+ 	main = "Funk-Kritker-Netzwerk ohne Einzelkanten mit eingefärbten Kanten: Kritik, positive Erwähnung und Reaction") # Titel der Visualisierung  
 
-
+legend("bottomleft", 
+       c("Funk Netzwerk","Ehemalig bei Funk", "Kritiker"),
+       col=c("#A952F7", "#4FD9FF", "#EF7B79"), 
+       pch = 19, 
+       border = "black", 
+       pt.cex=3, 
+       cex=1.5,
+       x.intersp = 1.5,
+       bty="o", 
+       bg = "grey90",
+       box.col = "grey50", 
+       ncol=1, )
 ```
+Das Gesamtnetzwerk gibt schon einen relativ guten Überblick über die allgemeine Situation. Die größe der Knoten richtet sich nach dem Indegree Wert. Dabei stechen vorallem direkt Funk, STRG_F und Renzo ins Auge welche die größten Knoten im Gesamtnetzwerk darstellen.
+
 
 ## 6) Funk-Netzwerk (Teilnetzwerk des Gesamtnetzwerkes)
 
@@ -352,7 +365,11 @@ plot(funkn,
 vcount(funkn) # 46 Knoten
 ecount(funkn) # 62 Kanten
 
-
+#Zentralitätsmaße
+degree(funkn) #Funk hat den höchsten Degree Wert mit 60 
+degree(funkn, mode = "out") #Den höchsten Outdregree hat Funk mit 44
+degree(funkn, mode = "in") #Den höchsten Indegree hat Funk mit 16 und STRG_F mit 11
+betweenness(funkn) #Funk hat den höchsten betweeness Wert mit 687
 ```
 Das Funk Netzwerk besteht aus 46 Knoten und 62 Verbindungen. Das beinhaltet sowohl aktive als auch ehemalige Kanäle. Anhand der Visualisierung erkennt man das 13 Kanäle früher unter Funk standen. Damit sind derzeitig 32 Kanäle unter Funk auf YouTube aktiv, wenn man Funk selbst noch abzieht.
 
@@ -460,7 +477,7 @@ out_degrees <- degree(s_lc, mode = "out")
 out_degrees
 
 # Knoten mit dem höchsten Outdegree
-which.max(out_degrees) # KuchenTV mit
+which.max(out_degrees) # KuchenTV mit 3 Outdegrees
 
 #Anzahl der Knoten und Kanten
 vcount(s_lc) # 5 Knoten
@@ -469,6 +486,10 @@ ecount(s_lc) # 11 Kanten
 
 ```
 Das Kritiker Netzwerk besteht aus insgesamt 30 verschiedenen YouTube Kanälen mit 113 Verbindungen untereinander. Damit sind die Kritiker deutlich vielseitiger miteinander verbunden als die Funk Kanäle. Der Kanal Renzo hat den höchsten Indegree Wert, da viele auf ihn und seinen Contact reagiert haben. Den höchsten Outdegree Wert hat KuchenTV, da dieser mit seinen Kritikvideos und Reactions mit vielen anderen Kanälen eine Verbindung erzeugt. Gerade mit Reactions erzeugen die Kritiker die meisten Verbindungen zu anderen Kanälen im Netzwerk. Auf YouTube ist es bereits länger ein Geschäftsmodell, Reaction Videos über anderen Content zu produzieren, da dieser weniger Zeitaufwändig ist und man direkt die Reaktion des jeweiligen YouTubers sieht.
+
+Auffällig ist in der Visualisierung das die rechtspolitische Kritikerblase um die Honigwabe und ClownsWelt komplett getrennt von der "Mainstream" Bubble ist.
+
+Ebenfalls interessant im Kritiker Netzwerk sind die Cliquen. Diese zeigen wie viele Kritiker in einer wechselseitigen Beziehung stecken und miteinander zu tun haben  (Täube, 2023). Die größte Clique hierbei befindet sich zwischen Renzo, TJ, KuchenTV, JustNero und AlphaKevin.
 
 
 ## 8) Egonetzwerk von dem Knoten: Renzo
@@ -539,9 +560,14 @@ plot(renzo1,
 vcount(renzo1) # 16 Knoten
 ecount(renzo1) # 71 Kanten
 
-
+#Zentralitätsmaße
+degree(renzo1) #Renzo hat den höchsten Degree Wert mit 19 
+degree(renzo1, mode = "out") #Den höchsten Outdregree haben KuchenTV und Imp mit 9
+degree(renzo1, mode = "in") #Den höchsten Indegree hat Renzo mit 14 und STRG_F mit 11
+betweenness(renzo1) #Renzo hat den höchsten betweeness Wert mit 77,75%
 ```
-Das Ego-Netzwerk um den Kanal Renzo ist bereits überaus stark miteinander verknüpft. Bereits über die Hälfte der Kritiker haben eine direkte Verbindung zu Renzo, sei es durch Reactions, Antwortvideos oder eigenen Content.
+Das Ego-Netzwerk um den Kanal Renzo ist bereits überaus stark miteinander verknüpft. Bereits über die Hälfte der Kritiker haben eine direkte Verbindung zu Renzo, sei es durch Reactions, Antwortvideos oder eigenen Content. Herausstechen tun hier vorallem KuchenTV und Imp da diese die meisten Verbindungen nach außen zu anderen Kanälen, hauptsächlich mit Reactions und Kritikvideos, besitzen. Renzo hat mit insgesamt 19 Verbindungen nach außen und zu sich den höchsten Degree Wert im Egonetzwerk.
+
 
 ## 9) Egonetzwerk Renzo zweiter Ordnung
 
@@ -804,7 +830,7 @@ ecount(strgfl) # 250 Kanten ->alle Knoten und Kanten des gesamten Netzwerks
 
 
 ```
-Bereits bei der zweiten Ordnung sind wir wieder beim Gesamtnetzwerk angelangt. Dies zeigt vorallem welche Welle der Kritik und Videos der Skandal um Rezo ausgelöst hat.
+Bereits bei der zweiten Ordnung sind wir wieder beim Gesamtnetzwerk angelangt. Dies zeigt vorallem welche Welle der Kritik und Videos der Skandal um Rezo ausgelöst hat. Dies zeigt auch sehr stark das "Small World" Phänomen (Schnettler, 2023).
 
 12.1) Renzo im Vergleich zu den anderen Knoten
 
