@@ -20,26 +20,87 @@ output:
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
-# Einleitung
-Als junge Medienschaffende Person ist es zunächst äußerst reizvoll , sich einem jungen Medienformat wie Funk anzuschließen, anstatt zu den altbekannten und renommierten klassischen Medienhäusern in Deutschland zu gehen. Jedoch sind seit dem Start von Funk im Oktober 2016 mit bis dato über 40 Formaten, vermehrt Auffälligkeiten in der Öffentlichkeit aufgetreten, die einen zum Nachdenken über eine Bewerbung bei Funk anregen. Aus diesem Grund haben wir uns entschieden, das Netzwerk von Funk zu überprüfen, um herauszufinden, was hinter der aufkommenden Kritik steckt und woran es liegt, bzw. woher diese kommt. Gleichzeitig möchten wir visuell in einer Netzwerk- und Beziehungsanalyse darstellen, welche Zusammenhänge zwischen Funk und seinen Kritikern bestehen.
+#Abstract
+Vermehrt sieht man junge Medienschaffende, die sich entscheiden beim  Online-Content-Netzwerk Funk zu arbeiten. Äußerst reizvoll, besonders wenn das Funknetzwerk mit modernen Formaten und kreativem Freiraum wirbt.
+Jedoch stehen seit dem Start Funks im Oktober 2016, mit derzeit über 40 Formaten, häufiger kritische Auffälligkeiten in den Medien. Besonders seit Veröffentlichung zweier Videos von dem YouTube-Creator “Rezo”, gelangt Funk bzw. der Funkkanal “STRG_F” in die Kritik und erlangt dadurch rasant mediale Popularität, auch seitens Massenmedien wie Übermedien. 
 
-In unserer Netzwerkanalyse untersuchen wir die Verbindungen zwischen dem Funk-Netzwerk von ARD und ZDF und deren Kritikern, vorrangig Rezo, welcher für seine häufige Kritik an Funk und anderen großen Unternehmen bekannt geworden ist. Gegenstand dieser Analyse ist der Konflikt zwischen dem freien Content Creator Rezo und dem Funk Kanal “STRG-F”. Für dieses Netzwerk wurde ein großer Anteil der bekanntesten Meinungsblogger und Reaction YouTuber erhoben. Zudem stellen wir fast das komplette, derzeit aktive, Funk-Netzwerk dar. Erhoben wurden 76 Kanäle mit insgesamt 250 Verbindungen. Unser Hauptinteresse besteht darin, wie Kritiker untereinander vernetzt sind, wie die Dynamik zwischen diesen stattfindet und welche Kanäle des Funk-Netzwerkes im Zeitraum vom 1. September 2023 bis zum 29. Februar 2024 kritisiert wurden. Besonders interessant fanden wir bei der Thematik, wie einflussreich das erste Video von Rezo für die Entwicklung des Netzwerkes war und den Fakt, dass es ohne seinen Beitrag nie eine breitere Diskussion darüber gegeben hätte. 
 
-Forschungsfrage: Inwieweit hängen die Kanäle vom Funknetzwerk mit ihren Kritikern zusammen?
+(Aus diesem Grund haben wir uns entschieden, das Netzwerk von Funk zu überprüfen, um herauszufinden, was hinter der aufkommenden Kritik steckt und woran es liegt, bzw. woher diese kommt. Gleichzeitig möchten wir visuell in einer Netzwerk- und Beziehungsanalyse darstellen, welche Zusammenhänge zwischen Funk und seinen Kritikern bestehen.)
+
+
+#Einleitung
+
+In unserer Netzwerkanalyse untersuchen wir die Verbindungen zwischen dem Funk-Netzwerk von ARD und ZDF und deren Kritikern, vorrangig Rezo, welcher für seine häufige Kritik an Funk und anderen großen Unternehmen bekannt geworden ist. Gegenstand dieser Analyse ist der Konflikt zwischen dem freien Content-Creator Rezo und dem Funk Kanal “STRG-F”. Für dieses Netzwerk wurde ein großer Anteil der bekanntesten Meinungsblogger und Reaction YouTuber erhoben. Zudem stellen wir fast das komplette, derzeit aktive, Funk-Netzwerk dar. Erhoben wurden 76 Kanäle mit insgesamt 250 Verbindungen. Unser Hauptinteresse besteht darin, wie Kritiker untereinander vernetzt sind, wie die Dynamik zwischen diesen stattfindet und welche Kanäle des Funk-Netzwerkes im Zeitraum vom 1. September 2023 bis zum 29. Februar 2024 kritisiert wurden. Besonders interessant fanden wir bei der Thematik, wie einflussreich das erste Video von Rezo für die Entwicklung des Netzwerkes war und den Fakt, dass es ohne seinen Beitrag nie eine breitere Diskussion darüber gegeben hätte. 
+
+Forschungsfrage: Inwieweit hängen die Kanäle vom Funknetzwerk mit ihren Kritikern auf YouTube im Zeitraum von September 2023 bis Februar 2024 zusammen?
 
 
 # Vorarbeiten und vergleichbare Studien
-## Forschungsstand
-Das Forschungsdesign lehnt sich zum einen an die lange Tradition der Netzwerkanalyse in der Schulforschung an (XXXX). Es greift zudem die klassische Studie von Krackhardt (XXXX) auf, der ein Ratsuche und Unterstützungsnetzwerk in einem Unternehmen untersuchte. 
+## Forschungsstand der empirischen und theoretischen Literatur*
+//
+Bevor wir uns mit bestehenden empirischen Studien und theoretischen Konzepten zum Thema Funk befassen, ist es wichtig, zunächst zu verstehen, wie Funk als Plattform funktioniert und welche zentralen Kritikpunkte existieren. In diesem Sinne werden im Folgenden die grundlegenden Funktionsweisen und die Hauptkritikpunkte kurz erläutert. Anschließend wird das Konzept von Public Value anhand von Funk vorgestellt, um den bisherigen Mehrwert von Funk festzustellen. Dabei werden wir einen Rückblick darauf werfen, wie sich Funk im Laufe der Zeit entwickelt hat und welchen Stand die Plattform mit aktueller Kritik erreicht hat. Diese Einleitung dient als Rahmen für die folgende Netzwerkanalyse, die es uns ermöglicht, die Beziehungen zwischen den Akteuren im Funk-Netzwerk und seinen Kritikern genauer zu untersuchen.
+
+#Zentrale Kritikpunkte
+Die Kritik an Funk umfasst mehrere zentrale Punkte, die eine Debatte über die Rolle und den Wert des öffentlich-rechtlichen Jugendangebots ausgelöst haben. Ein wesentlicher Aspekt ist die politische Kritik, insbesondere seitens der CDU, die eine Reform zur Steigerung von Wirtschaftlichkeit, Ausgewogenheit und Neutralität fordert. Eine wissenschaftliche Studie der Otto-Brenner-Stiftung offenbarte eine Dominanz subjektiver Berichterstattungsmuster und eine geringe Vielfalt an Quellenformen in den Reportageformaten von Funk. Trotz dieser Kritik wurde das Budget für Funk erhöht, was auf breite Diskussionen stieß.
+
+Ein weiterer zentraler Kritikpunkt betrifft die Finanzierung von Funk durch Rundfunkgebühren. Die Verwendung öffentlicher Gelder für das Jugendformat hat zu kontroversen Diskussionen geführt, insbesondere angesichts der Debatte über eine mögliche Erhöhung der Rundfunkgebühren im Jahr 2025. Die Frage nach der Finanzierung und der gerechten Verteilung der Kosten bleibt daher ein zentrales Thema.
+
+Die Studie der Otto-Brenner-Stiftung wies auch auf mögliche Verstöße von Funk gegen journalistische Grundsätze hin, insbesondere das Gebot der Objektivität und ausgewogenen Berichterstattung. Kritikpunkte sind die subjektive Perspektive und explizite Meinungsäußerungen in den Beiträgen sowie das Fehlen internationaler Bezüge und die Vernachlässigung ländlicher Regionen und neuer Bundesländer.
+
+Darüber hinaus richten sich die kritischen Stimmen auch auf einzelne Akteure innerhalb des Funk-Netzwerks. Rezo, bekannt für seine politischen Äußerungen und das Video "Die Zerstörung der CDU", steht ebenso im Fokus wie das Reportageformat "STRG_F" des NDR. Kontroversen, wie die Veröffentlichung von Verhörungs-Auszügen oder eine Dokumentation über den Lebensstil der "Superreichen", haben zu anhaltenden Diskussionen geführt.
+
+Diese Zusammenfassung der zentralen Kritikpunkte verdeutlicht die vielfältigen Herausforderungen, mit denen Funk konfrontiert ist. Die Analyse dieser Kritikpunkte im Rahmen einer Netzwerkanalyse ermöglicht es, nicht nur die Kritik am Format selbst, sondern auch an einzelnen Akteuren genauer zu untersuchen und ihre Verbindungen innerhalb des Netzwerks zu analysieren.
+
+Im nächsten Schritt werden wir uns ausführlicher mit der Diskussion um den Mehrwert von Funk befassen. Dazu müssen wir uns zunächst mit dem eigentlichen Ziel von Funk und seiner gesellschaftlichen Relevanz auseinandersetzen. Anschließend betrachten wir Funk unter den Aspekten des Public Value Konzepts, um besser zu verstehen, welchen Beitrag die Plattform zur öffentlichen Debatte und zur Erfüllung ihres Auftrags als öffentlich-rechtlicher Sender leistet.
+
+#Relevanz und gesellschaftlicher Beitrag (Worauf will Funk abzielen?)
+Funk (Hey, Wir Sind Funk, o. D.)zielt darauf ab, eine relevante und gesellschaftlich wertvolle Plattform zu sein. Sie suchen aktiv nach guten Ideen, spannenden Erzählformen und Menschen mit Haltung, deren Meinungen nicht zwangsläufig die eigene Funk-Position widerspiegeln müssen. Durch die Möglichkeit, Inhalte abseits von kommerziellen Einflüssen zu erstellen, trägt Funk zur Vielfalt und Unabhängigkeit der Medienlandschaft bei. Zusätzlich unterstützen sie Newcomer sowohl redaktionell als auch finanziell, um deren Entwicklung und Beitrag zur Medienkultur zu fördern.
+
+#Konzept des Public Values => Quelle 1
+Public Value bezieht sich auf den gesellschaftlichen Nutzen, den öffentlich-rechtliche Medien bieten, einschließlich Qualität, Vielfalt und Informationsgehalt. Der Begriff wurde vor allem durch die BBC in Diskussionen um gesellschaftliche Anforderungen an öffentlich-rechtliche Medien eingeführt. Dabei geht es darum, den inhaltlichen Mehrwert im digitalen Zeitalter zu definieren und umzusetzen. Die Schwierigkeit besteht darin, eine klare Definition von Public Value zu finden, da der Begriff in verschiedenen Ländern unterschiedlich interpretiert wird und für verschiedene Positionen und Argumente verwendet wird. Eine einheitliche und präzise Definition ist jedoch notwendig, um den gesellschaftlichen Nutzen öffentlich-rechtlicher Medien im digitalen Zeitalter zu gewährleisten.
+
+#Was bedeutet das für Funk?
+Die Debatte um Public Value im Netz betrifft auch Funk, das öffentlich-rechtliche Online-Angebot für junge Zielgruppen. Dabei geht es darum, wie der inhaltliche Mehrwert von Funk im digitalen Zeitalter definiert und umgesetzt wird. Öffentlich-rechtliche Medien wie Funk müssen sich an die technologischen und gesellschaftlichen Veränderungen anpassen, um ihren gesellschaftlichen Nutzen, einschließlich Qualität, Vielfalt und Informationsgehalt, zu gewährleisten. Dabei spielt das Internet eine wichtige Rolle, da es eine Fülle an Informationen bietet und öffentlich-rechtliche Medien ermutigt, ihren Mehrwert auch online zu vermitteln.
+
+#Analyse anhand von Funk 
+Public Network Value for the Next Generation am Beispiel von funk
+Folgende Inhalte sind Teil eines Kapitels, verfasst von den Autoren Birgit Stark und Miriam Steiner, ist Teil des Buches "Der öffentliche (Mehr-)Wert von Medien: Public Value aus Publikumssicht", herausgegeben von Nicole Gonser vom Bayerischen Rundfunk. Es analysiert das neue Online-Jugendangebot funk nach knapp einem halben Jahr seit seiner Einführung. Die Autoren untersuchen den gewählten Weg der Macher von funk und ob sie ihre Ziele erreichen können. Dabei werden qualitative Analysen der Medienresonanz und theoretisch hergeleitete Evaluationskriterien verwendet. Die Diskussion darüber, die Öffentlich-Rechtlichen verstärkt als "Public Service Media" statt "Public Service Broadcaster" zu begreifen und ihrer veränderten Rolle in digitalen Netzwerken Rechnung zu tragen, ist in Deutschland noch wenig verankert, erscheint aber angesichts der medialen Umbrüche dringend notwendig.
+ 
+Die Reaktionen auf funk, das neue öffentlich-rechtliche Content-Netzwerk, sind gespalten, aber überwiegend positiv. Besonders gelobt wird das innovative Konzept, das den Netzwerk Gedanken ohne Kompromisse lebt und unter dem Label "öffentlich-rechtlich" so nicht zu erwarten war. Positiv hervorgehoben wird auch das vielfältige Programmangebot des funks, das Genres wie Comedy, Sport, Wissen und Musik abdeckt. Darüber hinaus wurden einige Formate, darunter "Wishlist" und "Jäger & Sammler", bereits für renommierte Preise nominiert, was für die Qualität und Vielfalt der Inhalte spricht. Trotz dieser positiven Aspekte gibt es auch kritische Stimmen. Einige Kritiker werfen funk vor, zwanghaft versuchen zu wollen, cool zu sein, wobei bestimmte Inhalte als "bräsig" und "gewollt" empfunden werden. Insbesondere die vulgäre Sprache wird in einigen Formaten bemängelt. Eine weitere Herausforderung ist die geringe Sichtbarkeit des Senders in der Zielgruppe der 20- bis 24-Jährigen, die öffentlich-rechtlichen Medien häufig skeptisch gegenübersteht. Ein weiterer Kritikpunkt war damals die Abhängigkeit von Drittplattformen wie YouTube und Facebook. Da diese Plattformen über Algorithmen verfügen, die Einfluss auf die Sichtbarkeit der Inhalte haben, ist eine klare Sichtbarkeit der Marke funk nicht immer gegeben. Dies führt zu Unsicherheiten hinsichtlich der Auffindbarkeit und Präsenz der Inhalte sowie der langfristigen Markenpositionierung.
+ 
+Neben der Sichtbarkeit wird auch die Qualität der Inhalte als verbesserungswürdig angesehen, um einen langfristigen Kontakt zur Zielgruppe herzustellen. Auch der Dialog mit der Zielgruppe und die gesellschaftliche Teilhabe durch Beteiligungsmöglichkeiten wie Blog und Workshops sind noch ausbaufähig. Insgesamt zeigt sich, dass trotz der innovativen Ansätze von funk noch einige Herausforderungen zu bewältigen sind, um die angestrebten Ziele zu erreichen und öffentlich-rechtliche Inhalte erfolgreich im digitalen Raum zu etablieren.
+ 
+
+#Zwischenfazit
+Ein halbes Jahr nach dem Start von Funk zeigt sich, dass das Online-Jugendangebot erfolgreich ist, um die Zielgruppe auf Drittplattformen zu erreichen. Doch es bleiben Fragen bezüglich der Umsetzung klassischer Qualitätskriterien und des öffentlich-rechtlichen Mehrwerts offen. Die Diskrepanz zwischen den Erwartungen an Public Value und den kommerziellen Logiken der Plattformen stellt Funk vor Herausforderungen. Diese sind heutzutage in verschiedenen Aspekten erkennbar und verdeutlichen die Relevanz einer Netzwerkanalyse, um die Beziehungen zwischen den Kanälen von Funk und ihren Kritikern zu verstehen. Durch eine tiefgreifende Analyse dieser Beziehungen können wir besser verstehen, wie einzelne Akteure und Inhalte innerhalb des Netzwerks interagieren und wie dies die Wahrnehmung von Funk beeinflusst. Unsere Arbeitshypothesen für das Projekt zielen darauf ab, zwei klare Cluster zu identifizieren: ein Cluster, der die Funkkanäle repräsentiert, und einen Cluster, der die Kritiker umfasst. Wir gehen davon aus, dass einzelne Knoten als Brücken zwischen den Clustern fungieren, wie beispielsweise Rezo, der sowohl mit den Kritikern als auch mit Funk in Verbindung steht. Wir erwarten, dass es Akteure oder Gruppen gibt, die möglicherweise in beiden Netzwerken aktiv sind und somit eine Verbindung zwischen ihnen herstellen.
+
+#Forschungsstand zu Netzwerkanalysen
+Durch die Analyse eines Netzwerkes können Abhängigkeiten zwischen den unterschiedlichen Akteuren aufgefasst und ausgewertet werden (Jakob Jünger, S.10). Wassermann und Faust beschreiben soziale Netzwerke als Möglichkeit Beziehungen von Akteuren zu verdeutlichen (Wassermann, Faust, 1994, S.20). Handelt es sich beim untersuchten Netzwerk bloß um eine Art von Knoten, so werden diese als unimodale Netzwerke bezeichnet (Jakob Jünger, S. 393). Sobald die aufgefassten Knoten Personen sind, werden klassischerweise soziodemografische Eigenschaften miterhoben (Jakob Jünger, S 393). Zudem werden Unterscheidungen in der Stärke von Beziehungen, der Richtung und der Reziprozität vorgenommen. Daraus folgend kann das Kantengewicht, die Anzahl von Kontakten zwischen zwei Akteuren reproduzieren (Jakob Jünger, S.393). Bei der gleichzeitigen Beobachtung mehrerer Beziehungsarten werden diese als multiplexe Beziehungen definiert (Jakob Jünger, S.393).
+
+Für die Netzwerkanalyse können unterschiedliche Denkansätze herangezogen werden, die sich in Laufe der Jahre von einfachen Hypothesen zu komplexen Theorien entwickelt haben. Die für das Funk-Kritiker-Netzwerk bedeutsamen Thesen werden im Folgenden kurz skizziert.
+
+Anhand der Feldtheorie wird das Verhalten von Akteuren beschrieben, die sich an bestimmten Personen orientieren (Martin, 2003, S.1ff). Daraus folgt eine Übernahme von Einstellungen und die Ausrichtung des eigenen Handels anhand der ausgewählten Personen (Martin, 2003, S. 1ff.).
+
+Schon 1947 wurde von Lewin das Konzept der „Gruppendynamik“ beschrieben (Lewin, 1947, S.5 ff.). Nach ihm können sich Mitglieder einer Gruppe  gegenseitig beeinflussen, so dass ihr Verhalten nicht mehr in einer isolierten Form betrachtet werden kann, sondern vielmehr als ein zusammenwirkendes Handeln aufgefasst werden muss (Lewin, 1947, S. 38). So werden Gegenstände positiv bewertet, die auch von den Mitmenschen positiv bewertet werden, die mit dem Akteur in einem positiven Verhältnis stehen (Fritz Heider, 1946, S.107). Gleichzeitig werden Objekte als negativ aufgefasst, sobald ein befreundeter Akteur diese als negativ klassifiziert (Fritz Heider, 1946, S. 107). Die Balance-Theorie lässt sich auf Konstellationen zwischen drei Akteuren anwenden (Darwin Cartwright, Frank Haray, 1956, S. 278 ff). Drei Akteure können entweder nur positive Beziehungen untereinander besitzen oder zwei negative und eine positive, um eine Balance herzustellen (Darwin Cartwright, Frank Haray, 1956, S. 278ff). Bestehen daher nur positive Beziehungen, wird von einer positiven Transitivität gesprochen, während im zweiten Fall eine negative Transitivität vorherrscht (Darwin Cartwright, Frank Haray, 1956, S. 278ff). Zudem kann zwischen Akteur A und C eine negative Beziehung entstehen, wenn Akteur A eine negative Beziehung zu B führt und zwischen B und C eine positive Beziehung existiert (Darwin Cartwright, Frank Haray, 1956, S. 278ff.). Diese Konstellation wird nach Holland und Leinhardt unter 201 definiert (Holland, Leinhardt, 1970, S. 496). Mithilfe der zusätzlichen negativen Beziehung, die durch die Balance-Theorie gewährleistet wird, wird die Triade unter der Bezeichnung 300 nach Holland und Leinhardt aufgefasst (Holland, Leinhardt, 1970, S. 496).
+
+Die drei Typen von Mechanismen werden unter dem Überbegriff „Netzwerkmechanismen“ gesammelt und definieren die kleinteiligen kausalen Zusammensetzungen zwischen dem sozialen Netzwerk und anderen sozialen Tatsachen (Soziale Netzwerke, S.157). Unter dem Mechanismus der Netzwerkbildung fällt, der von Scott Feld entwickelte „Aktivitäts-Foki“ (Scott Feld 1981, S. 1015ff). Für das Entstehen von sozialen Beziehungen dienen Orte, die den sozialen Austausch zwischen Personen mit ähnlichen Interessen fördern (Scott Feld, 1981, S.1015ff).
+
+Während der Mechanismus der Netzwerkeffekte die Auswirkung von Netzwerkkonstellationen auf andere Aspekte sozialer Strukturen ausweitet (Soziale Netzwerke, S. 155). Granovetter und Burt beschreiben unteranderem einen Einfluss auf die beruflichen Erfolge (Granovetter 1973, S. 1373, Burt 1992).
+
+Abschließend beschäftigt sich der Mechanismus der Netzwerkstrukturierung mit den möglichen Unterpunkten: Reziprozität, Transitivität und dem Preferential Attachment (Soziale Netzwerke, S.163ff.) Die Reziprozität definiert die Einstellung eines Akteurs, sich anderen Akteuren ähnlich zu verhalten, wie diese sich ihm gegenüber verhalten (Soziale Netzwerke, S.163). Das gegenseitige Revanchieren kann zu einer sogenannten „Spirale der Gewalt“ führen, in der die Akteure ohne Rücksicht auf Verluste dem anderen Akteur Schaden zufügen möchten (Collins 2008). 
+
+Granovetter erläutert die Transitivität mit den Worten, dass Akteure bereit sind eine Feindschaft zu den Personen aufzubauen, zu welchem der Freund eine Feindschaft führt (Mark Granovetter, 1973, S. 1362).
+
+Zuletzt wird das Preferential Attachment aufgeführt, welche bestätigt, dass sich Akteure in einem Netzwerk an zentralen Akteuren orientieren und zu diesen eine Beziehung aufbauen (Barabasi, Bonabeau 2003, S.60ff). Robert Merton fasst die Wirkung von zentralen Akteuren weiter (Robert Merton 1968, 57ff.). Nach ihm spielt die Kombination zwischen prominenten Autoren und ihrer Arbeit eine bedeutsame Rolle, weshalb andere Akteure sich an diesen orientieren (Robert Merton 1968, 57ff).
+
+Aus dem vorgestellten Konzept der Netzwerkmechanismen treten die Netzwerkeffekte hervor. Diese sind die Auswirkung der Netzwerkkonstellationen (Soziale Netzwerke, S.167). Daraus erschließt sich, dass zentrale Akteure auf der einen Seite einen besseren und schnelleren Zugang zu Informationen besitzen (Soziale Netzwerke, S.167) und auf der anderen Seite eine Machtposition im Netzwerk einnehmen, von der andere Akteure abhängig sind (Weber, 1922, 1972). Zudem üben Netzwerke einen sozialen Druck auf verbundene Akteure aus (Soziale Netzwerke, S. 168). Der Druck wirkt umso höher, je dichter das Netzwerk zusammengestellt ist (Soziale Netzwerke, S. 168). Nach Colemann kann das Verhalten von Akteuren durch andere Akteure beobachtet und sanktioniert werden (James Colemann (1988, 1990, S.104). Bei der Sanktionierung eines Akteurs kann es zu gezwungene Kooperation kommen (James Colemann (1988, 1990, S.104). Hogg und Abrams stellen das „Groupthink“ vor, welches eine Denkweise der Gruppe widerspiegelt, die keine alternativen Sichtweisen akzeptiert (Hogg, Abrams 1988, S.112f.). Zuletzt wird die Koordination angeführt, die eine Protestbewegung erläutert, die kräftiger wirkt, wenn mehr Organisationen untereinander vernetzt sind und ein klares Zentrum existiert (Osa 2003 S.77ff.).
+Die aufgeführten Konzepte waren wichtig zu betrachten, um nun Schlüsse für das erhobene Funk-Kritiker-Netzwerk zu schließen.
 
 ## Arbeitshypothesen
-Wir gehen von folgenden Arbeitshypothesen aus:
-a) Ratsuche: Der Knoten mit dem höchsten Indegree hat wahrscheinlich die Funktion des Semestersprechers.
-b) Zusammenarbeit: orientiert sich primär an Homophilie, d.h. gleiche Vertiefungsrichtung.
-
-Ansonsten hat die Analyse einen überwiegend explorativen Charakter.
-Die Netzwerkanalyse wird zeigen, dass sich Funk-Netzwerke und Kritiker von ARD und ZDF in zwei klare Cluster aufteilen. Innerhalb dieser Cluster werden einzelne Knoten als Brücken fungieren, und somit eine Verbindung zwischen den beiden Lagern herstellen. Diese Brücken-Knoten könnten Akteure oder Gruppen sein, die in beiden Netzwerken aktiv sind.
-Homophilie, Indegree Werte aussschlaggebend?
+Für unser Forschungsprojekt stellen wir zwei zentrale Hypothesen auf, die wir im Laufe unserer Recherche und Datenerhebung überprüfen und falsifizieren möchten. 
+Zum einen gehen wir davon aus, dass sich die Funk-Mitglieder und die Funk-Kritiker in zwei klar abgegrenzte Cluster voneinander aufteilen werden. Unsere Vermutung besteht darin, dass sich die Mitglieder in den jeweiligen Clustern eher in ihren gewohtem Umfeld bleiben und wenig Kontakt mit Akteuren außerhalb ihres Netzwerks zu tun haben. 
+Unsere zweite Hypothese baut darauf auf und geht davon aus, dass trotz der abgetrennten Cluster, einige Akteure oder Gruppen in unserem Kritiker-Netzwerk als Brücken-Knoten fungieren. Dies könnten Personen(gruppen) sein, die in beiden Clustern aktiv sinn. Beispielsweise durch Kooperationen oder Zusammenarbeit mit Mitgliedern beider Cluster. 
+Durch die nächsten Schritte der Datenerhebung, sowie der Datenaufbereitung und Visualisierung sollen die genannten Hypothesen geprüft und bestätigt oder falsifiziert werden.
 
 # Datenerhebung: Zugang, Bereinigung und Codebuch
 
@@ -407,7 +468,7 @@ ecount(s_lc) # 11 Kanten
 
 
 ```
-Das Kritiker Netzwerk besteht aus insgesamt 30 verschiedenen YouTube Kanälen mit 113 Verbindungen untereinander. Damit sind die Kritiker deutlich vielseitiger miteinander verbunden als die Funk Kanäle. Der Kanal Renzo hat den höchsten Indegree Wert, da viele auf ihn und seinen Contact reagiert haben. Den höchsten Outdegree Wert hat KuchenTV, da dieser mit seinen Kritikvideos und Reactions mit vielen anderen Kanälen eine Verbindung erzeugt.
+Das Kritiker Netzwerk besteht aus insgesamt 30 verschiedenen YouTube Kanälen mit 113 Verbindungen untereinander. Damit sind die Kritiker deutlich vielseitiger miteinander verbunden als die Funk Kanäle. Der Kanal Renzo hat den höchsten Indegree Wert, da viele auf ihn und seinen Contact reagiert haben. Den höchsten Outdegree Wert hat KuchenTV, da dieser mit seinen Kritikvideos und Reactions mit vielen anderen Kanälen eine Verbindung erzeugt. Gerade mit Reactions erzeugen die Kritiker die meisten Verbindungen zu anderen Kanälen im Netzwerk. Auf YouTube ist es bereits länger ein Geschäftsmodell, Reaction Videos über anderen Content zu produzieren, da dieser weniger Zeitaufwändig ist und man direkt die Reaktion des jeweiligen YouTubers sieht.
 
 
 ## 8) Egonetzwerk von dem Knoten: Renzo
@@ -480,6 +541,7 @@ ecount(renzo1) # 71 Kanten
 
 
 ```
+Das Ego-Netzwerk um den Kanal Renzo ist bereits überaus stark miteinander verknüpft. Bereits über die Hälfte der Kritiker haben eine direkte Verbindung zu Renzo, sei es durch Reactions, Antwortvideos oder eigenen Content.
 
 ## 9) Egonetzwerk Renzo zweiter Ordnung
 
@@ -610,6 +672,7 @@ plot(renzo3, edge.arrow.size=.3, main="Dritter Grad")
 
 par(mfrow=c(1,1), mar=c(0,0,1,2))
 ```
+Bereits bei der dritten Ordnung sind wir wieder beim Gesamtnetzwerk angelangt.
 
 ## 10) Egonetzwerk von STRG_F
 
@@ -675,6 +738,7 @@ vcount(strgf) # 18 Knoten
 ecount(strgf) # 70 Kanten
 	 
 ```
+Das Ego-Netzwerk um STRG_F beinhaltet bereits 18 Knoten. Davon sind nur STRG_F und Funk selbst beim Funk Netzwerk. Der Parabelritter kam erst nach der starken Kritik gegnenüber STRG_F zu Funk. Der Parabelritter kritisierte STRG_F in der Vergangenheit schon mehrmals, zuletzt bei der Reportage über Metal Konzerte. Das Ego-Netzwerk zeigt auf das STRG_F in diesem Zeitraum stark in der Kritik stand und viele andere Content Creator entweder auf STRG_F und deren Statements bzw. Videos reagierten oder selber Kritikvideos über diese erstellten.
 
 ## 11) Egonetzwerk von STRG_F zweiter Ordnung
 
@@ -740,6 +804,7 @@ ecount(strgfl) # 250 Kanten ->alle Knoten und Kanten des gesamten Netzwerks
 
 
 ```
+Bereits bei der zweiten Ordnung sind wir wieder beim Gesamtnetzwerk angelangt. Dies zeigt vorallem welche Welle der Kritik und Videos der Skandal um Rezo ausgelöst hat.
 
 12.1) Renzo im Vergleich zu den anderen Knoten
 
